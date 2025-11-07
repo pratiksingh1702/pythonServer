@@ -43,6 +43,7 @@ YDL_OPTS = {
     "source_address": "0.0.0.0",
     "forceip": 4,
     "cookiefile": "cookies.txt" ,
+    verbose": True
     "extractor_args": {"youtube": {"player_client": ["android"]}}
 }
 
@@ -212,3 +213,4 @@ if __name__ == "__main__":
     print("   http://localhost:8000/redirect/dQw4w9WgXcQ")
     print("   http://localhost:8000/test/dQw4w9WgXcQ")
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+
