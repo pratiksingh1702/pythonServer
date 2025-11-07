@@ -42,10 +42,19 @@ YDL_OPTS = {
     "default_search": "auto",
     "source_address": "0.0.0.0",
     "forceip": 4,
-    "cookiefile": "cookies.txt" ,
+    "cookiefile": "cookies.txt",
     "verbose": True,
-    "extractor_args": {"youtube": {"player_client": ["android"]}}
+    "extractor_args": {"youtube": {"player_client": ["android", "web"]}},
+    "http_headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                      "AppleWebKit/537.36 (KHTML, like Gecko) "
+                      "Chrome/122.0.0.0 Safari/537.36",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Referer": "https://www.youtube.com/",
+    },
 }
+
 
 # ------------------ Cache ------------------
 class AudioCache:
@@ -207,12 +216,15 @@ def test_playback(video_id: str):
 # ------------------ START THE SERVER ------------------
 if __name__ == "__main__":
     import uvicorn
+    import os
+    print("🧠 Cookie file exists:", os.path.exists("cookies.txt"))
     print("🎵 YouTube Music API Starting...")
     print("📢 Use these URLs in your browser:")
     print("   http://localhost:8000/play/dQw4w9WgXcQ")
     print("   http://localhost:8000/redirect/dQw4w9WgXcQ")
     print("   http://localhost:8000/test/dQw4w9WgXcQ")
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+
 
 
 
